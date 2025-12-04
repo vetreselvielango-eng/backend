@@ -1,9 +1,20 @@
 import express from "express";
-import { createBooking, getBookings } from "../controllers/bookingController.js";
+import {
+  createBooking,
+  getMyBookings,
+  getAllBookings,
+} from "../controllers/bookingController.js";
+
+import protect from "../middleware/authMiddleware.js";
+import admin from "../middleware/adminMiddleware.js";
 
 const router = express.Router();
 
-router.post("/", createBooking);
-router.get("/", getBookings);
+// USER
+router.post("/", protect, createBooking);
+router.get("/my-bookings", protect, getMyBookings);
+
+// ADMIN
+router.get("/admin/all", protect, admin, getAllBookings);
 
 export default router;

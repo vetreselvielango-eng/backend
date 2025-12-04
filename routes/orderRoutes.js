@@ -1,10 +1,24 @@
 import express from "express";
-import { createOrder, getMyOrders } from "../controllers/orderController.js";
-import protect from "../middleware/authMiddleware.js";
+import {
+  getAllOrders,
+  getMyOrders,
+  getOrderById,
+  deleteOrder,
+} from "../controllers/orderController.js";
+import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/", protect, createOrder);
-router.get("/my-orders", protect, getMyOrders);
+// ✅ ADMIN / DASHBOARD – Get all orders
+router.get("/", authMiddleware, getAllOrders);
+
+// ✅ USER – Get logged-in user's orders
+router.get("/my-orders", authMiddleware, getMyOrders);
+
+// ✅ Get single order by ID
+router.get("/:id", authMiddleware, getOrderById);
+
+// ✅ Delete an order (optional – admin)
+router.delete("/:id", authMiddleware, deleteOrder);
 
 export default router;

@@ -52,10 +52,14 @@ export const loginUser = async (req, res) => {
 
     // Generate token
     const token = jwt.sign(
-      { id: user._id },
+      {
+        id: user._id,
+        isAdmin: user.isAdmin   // ✅ THIS IS REQUIRED
+      },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "30d" }
     );
+    
 
     res.json({
       message: "Login successful",

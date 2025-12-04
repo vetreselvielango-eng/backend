@@ -7,6 +7,9 @@ import authRoutes from "./routes/authRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import productRoutes from "./routes/productRoutes.js"
+import serviceRoutes from "./routes/serviceRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -20,6 +23,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingRoutes);  
 app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/services", serviceRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/checkout", paymentRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend API is running");
