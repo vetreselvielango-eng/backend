@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose";  // Import mongoose library
 
-const productSchema = new mongoose.Schema(
+const productSchema = new mongoose.Schema(    // Define the schema for Product model
   {
     name: {
       type: String,
@@ -32,9 +32,9 @@ const productSchema = new mongoose.Schema(
       default: 10,
     },
   },
-  { timestamps: true }
+  { timestamps: true }  // Automatically manage createdAt and updatedAt fields
 );
 
-const Product = mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema); // Create the Product model using the schema
 
 export default Product;
